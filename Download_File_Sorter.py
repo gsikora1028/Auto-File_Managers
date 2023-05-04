@@ -37,6 +37,7 @@ for filename in os.listdir("/Users/gsikora/Downloads"):
         destination_path = destination_folder / filename
         shutil.move(str(source_path), str(destination_path))
 
+#folder paths for .xls file idenification/relocaiton
 folder_path = '/Users/gsikora/Desktop/GH/Formatted Docs'
 extension = '.xls'
 dest_folder = '/Users/gsikora/Desktop/GH/Formatted Docs/xls_files_to_delete'
