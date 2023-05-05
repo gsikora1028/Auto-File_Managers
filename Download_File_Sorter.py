@@ -51,4 +51,3 @@ def find_files(folder, extension, dest_folder):
                 # print(f"{file} was moved to xls_files_to_delete folder")
 
 find_files(folder_path, extension, dest_folder)
-
