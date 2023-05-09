@@ -1,26 +1,16 @@
 import os
 import shutil
 from pathlib import Path
+import datetime
+import time
 
 # Define the folders for different file types
 folders = {
-    ".JPG": "Images",
-    ".png": "Images",
-    ".jpg": "Images",
-    ".JPEG": "Images",
-    ".jpeg": "Images",
-    ".HEIC": "Images",
-    ".heic": "Images",
-    ".svg": "Images",
+    ".JPG": "Images", ".png": "Images",".jpg": "Images",".JPEG": "Images",".jpeg": "Images",".HEIC": "Images",".heic": "Images",".svg": "Images",
     ".pdf": "1-trfs",
-    ".xlsx": "Documents",
-    ".xls": "Documents",
-    ".pptx": "Documents",
-    ".docx": "Documents",
-    ".mp4": "Videos",
-    ".dmg": "MISC",
-    ".btw": "MISC",
-    ".zip": "MISC"
+    ".xlsx": "Documents",".xls": "Documents",".pptx": "Documents",".docx": "Documents",
+    ".mp4": "Videos"
+    ,".dmg": "MISC",".btw": "MISC",".zip": "MISC"
 }
 
 # Loop through the files in the downloads folder
@@ -37,17 +27,43 @@ for filename in os.listdir("/Users/gsikora/Downloads"):
         destination_path = destination_folder / filename
         shutil.move(str(source_path), str(destination_path))
 
-#folder paths for .xls file idenification/relocaiton
-folder_path = '/Users/gsikora/Desktop/GH/Formatted Docs'
+
+# define the list of directories where you want to search for files
+directories = ['/Users/gsikora/Desktop/GH/Formatted Docs', '/Users/gsikora/Downloads/Documents', '/Users/gsikora/Desktop']
+
+# define the file extension you want to search for
 extension = '.xls'
-dest_folder = '/Users/gsikora/Desktop/GH/Formatted Docs/xls_files_to_delete'
 
-def find_files(folder, extension, dest_folder):
-    for subdir, dirs, files in os.walk(folder):
-        for file in files:
-            if file.endswith(extension):
-                file_path = os.path.join(subdir, file)
-                shutil.move(file_path, os.path.join(dest_folder, file))
-                # print(f"{file} was moved to xls_files_to_delete folder")
+# define the destination folder where you want to move the files
+dest_folder = '/Users/gsikora/Desktop/xls_files_to_delete'
 
-find_files(folder_path, extension, dest_folder)
+# define a function to find files with the specified extension and move them to the destination folder
+def find_files(directories, extension, dest_folder):
+    for directory in directories:
+        for subdir, dirs, files in os.walk(directory):
+            for file in files:
+                if file.endswith(extension):
+                    file_path = os.path.join(subdir, file)
+                    shutil.move(file_path, os.path.join(dest_folder, file))
+                    print(f"{file} was moved to {dest_folder}.")
+
+# call the find_files function
+find_files(directories, extension, dest_folder)
+
+# # specify the directory where the new folder should be created
+# directory = "/path/to/directory"
+
+# # get the current time and date
+# now = datetime.datetime.now()
+
+# # check if the current time is 8am
+# while now.hour != 8:
+#     time.sleep(60) # wait 60 seconds and check again
+#     now = datetime.datetime.now()
+
+# # create a new folder with the current date as the name
+# folder_name = now.strftime("%m.%d-%Y")
+# folder_path = os.path.join(directory, folder_name)
+# os.mkdir(folder_path)
+
+# print(f"New folder '{folder_name}' created at {now}")
