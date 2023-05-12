@@ -6,18 +6,30 @@ import time
 
 # Define the folders for different file types
 folders = {
-    ".JPG": "Images", ".png": "Images",".jpg": "Images",".JPEG": "Images",".jpeg": "Images",".HEIC": "Images",".heic": "Images",".svg": "Images",
-    ".pdf": "1-trfs",
-    ".xlsx": "Documents",".xls": "Documents",".pptx": "Documents",".docx": "Documents",
-    ".mp4": "Videos"
-    ,".dmg": "MISC",".btw": "MISC",".zip": "MISC"
+    # Images
+    ".JPG": "Images", ".png": "Images", ".jpg": "Images", ".JPEG": "Images", 
+    ".jpeg": "Images", ".HEIC": "Images",".heic": "Images", ".svg": "Images",
+    
+    # Documents
+    ".xlsx": "Documents", ".xls": "Documents", ".pptx": "Documents", 
+    ".docx": "Documents", ".pdf": "Documents",
+    
+    # Videos
+    ".mp4": "Videos",
+    
+    # MISC
+    ".dmg": "MISC", ".btw": "MISC", ".zip": "MISC"
 }
 
 # Loop through the files in the downloads folder
 for filename in os.listdir("/Users/gsikora/Downloads"):
-    # Get the file extension and corresponding folder
-    ext = os.path.splitext(filename)[1]
-    folder = folders.get(ext)
+    # Check if "_TRF_" is present in the filename
+    if "_TRF_" in filename:
+        folder = "TRF_Files"  # Specify the folder for TRF files
+    else:
+        # Get the file extension and corresponding folder
+        ext = os.path.splitext(filename)[1]
+        folder = folders.get(ext)
 
     # If the file extension is in the dictionary, move the file to the corresponding folder
     if folder is not None:
@@ -28,14 +40,14 @@ for filename in os.listdir("/Users/gsikora/Downloads"):
         shutil.move(str(source_path), str(destination_path))
 
 
-# define the list of directories where you want to search for files
-directories = ['/Users/gsikora/Desktop/GH/Formatted Docs', '/Users/gsikora/Downloads/Documents', '/Users/gsikora/Desktop']
+# define the list of directories where you want to search for files with .xls extension
+directories = ['/Users/gsikora/Downloads/Documents', '/Users/gsikora/Desktop']
 
 # define the file extension you want to search for
 extension = '.xls'
 
 # define the destination folder where you want to move the files
-dest_folder = '/Users/gsikora/Desktop/xls_files_to_delete'
+dest_folder = '/Users/gsikora/Desktop/XLS_delete'
 
 # define a function to find files with the specified extension and move them to the destination folder
 def find_files(directories, extension, dest_folder):
