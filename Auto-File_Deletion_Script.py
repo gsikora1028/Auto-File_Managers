@@ -5,7 +5,7 @@ import glob
 def main():
     deleted_files_count = 0
     file_directories = [
-        # "/Users/gsikora/Downloads/TRF_Files",
+        "/Users/gsikora/Downloads/TRF_Files",
         "/Users/gsikora/Desktop/XLS_delete"
     ]
     days_elapsed = 0.00000001
