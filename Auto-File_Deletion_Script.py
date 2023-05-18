@@ -1,3 +1,7 @@
+#Program: Auto File Deleter
+#Author: Gabriel Sikora
+#Creation Date: 5/2/2023
+#---------------------------------------------------
 import os
 import time
 import glob
@@ -6,7 +10,9 @@ def main():
     deleted_files_count = 0
     file_directories = [
         "/Users/gsikora/Downloads/TRF_Files",
-        "/Users/gsikora/Desktop/XLS_delete"
+        "/Users/gsikora/Desktop/XLS_delete",
+        "/Users/gsikora/Desktop/GH/Formatted Docs/DocUpload/1-UPLOADED",
+        "/Users/gsikora/Desktop/GH/Formatted Docs/DRFs"
     ]
     days_elapsed = 0.00000001
     seconds = time.time() - (days_elapsed * 24 * 60 * 60)
