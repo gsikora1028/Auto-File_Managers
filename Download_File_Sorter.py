@@ -1,3 +1,7 @@
+#Program: Download File Sorter
+#Author: Gabriel Sikora
+#Creation Date: 5/2/2023
+#---------------------------------------------------
 import os
 import shutil
 from pathlib import Path
@@ -16,11 +20,11 @@ folders = {
     #Email
     ".eml" : "Email", ".pst" : "Email",
     #Images
-    ".gif" : "Images", ".iso" : "Images", ".jpeg" : "Images", ".jpg" : "Images", ".psd" : "Images", ".png" : "Images", ".psd" : "Images", ".tiff" : "Images", ".tif" : "Images",
+    ".gif" : "Images", ".iso" : "Images", ".jpeg" : "Images", ".jpg" : "Images", ".psd" : "Images", ".png" : "Images", ".tiff" : "Images", ".tif" : "Images",
     #MISC
     ".vsd" : "MISC", ".vsdm" : "MISC", ".vsdx" : "MISC", ".vss" : "MISC", ".vssm" : "MISC", ".vst" : "MISC", ".vstm" : "MISC", ".vstx" : "MISC", ".zip" : "MISC", ".step" : "MISC", ".bin" : "MISC", ".bmp" : "MISC", ".exe" : "MISC", 
     #Videos
-    ".flv" : "Videos", ".mov" : "Videos", ".mp3" : "Videos", ".mp4" : "Videos", ".mp4" : "Videos", ".mpeg" : "Videos", ".mpg" : "Videos", ".vob" : "Video",
+    ".flv" : "Videos", ".mov" : "Videos", ".mp3" : "Videos", ".mp4" : "Videos", ".mpg" : "Videos", ".vob" : "Video",
     #Webpages
     ".aspx" : "Webpages", ".html" : "Webpages",".htm" : "Webpages",
 }
@@ -64,21 +68,3 @@ def find_files(directories, extension, dest_folder):
 
 # call the find_files function
 find_files(directories, extension, dest_folder)
-
-# # specify the directory where the new folder should be created
-# directory = "/path/to/directory"
-
-# # get the current time and date
-# now = datetime.datetime.now()
-
-# # check if the current time is 8am
-# while now.hour != 8:
-#     time.sleep(60) # wait 60 seconds and check again
-#     now = datetime.datetime.now()
-
-# # create a new folder with the current date as the name
-# folder_name = now.strftime("%m.%d-%Y")
-# folder_path = os.path.join(directory, folder_name)
-# os.mkdir(folder_path)
-
-# print(f"New folder '{folder_name}' created at {now}")
