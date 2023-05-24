@@ -5,11 +5,9 @@
 import os
 import shutil
 from pathlib import Path
-import datetime
-import time
 
 # Define the folders for different file types
-folders = {
+file_extension_library = {
     #Audio
     ".adt" : "Audio", ".adts" : "Audio", ".aac" : "Audio", ".m4a" : "Audio", ".aifc" : "Audio", ".aiff" : "Audio", ".aif" : "Audio", ".avi" : "Audio", ".cda" : "Audio", ".m4a" : "Audio", ".wav" : "Audio",
     #Documents
@@ -37,11 +35,11 @@ for filename in os.listdir("/Users/gsikora/Downloads"):
     else:
         # Get the file extension and corresponding folder
         ext = os.path.splitext(filename)[1].lower()
-        folder = folders.get(ext)
+        folder = file_extension_library.get(ext)
 
     # If the file extension is in the dictionary, move the file to the corresponding folder
     if folder is not None:
-        destination_folder = Path("/Users/gsikora/Downloads") / folder
+        destination_folder = Path("/Users/gsikora/Desktop/GH/1-DV") / folder
         destination_folder.mkdir(parents=True, exist_ok=True)
         source_path = Path("/Users/gsikora/Downloads") / filename
         destination_path = destination_folder / filename
@@ -54,7 +52,7 @@ directories = ['/Users/gsikora/Downloads/Documents', '/Users/gsikora/Desktop']
 extension = '.xls'
 
 # define the destination folder where you want to move the files
-dest_folder = '/Users/gsikora/Desktop/XLS_delete'
+dest_folder = '/Users/gsikora/Desktop/GH/XLS_delete'
 
 # define a function to find files with the specified extension and move them to the destination folder
 def find_files(directories, extension, dest_folder):
