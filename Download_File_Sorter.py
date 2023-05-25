@@ -29,17 +29,12 @@ file_extension_library = {
 
 # Loop through the files in the downloads folder
 for filename in os.listdir("/Users/gsikora/Downloads"):
-    # Check if "_TRF_" is present in the filename
-    if "_TRF_" in filename:
-        folder = "TRF_Files"  # Specify the folder for TRF files
-    else:
-        # Get the file extension and corresponding folder
-        ext = os.path.splitext(filename)[1].lower()
-        folder = file_extension_library.get(ext)
+    ext = os.path.splitext(filename)[1].lower()
+    folder = file_extension_library.get(ext)
 
     # If the file extension is in the dictionary, move the file to the corresponding folder
     if folder is not None:
-        destination_folder = Path("/Users/gsikora/Desktop/GH/1-DV") / folder
+        destination_folder = Path("/Users/gsikora/Downloads") / folder
         destination_folder.mkdir(parents=True, exist_ok=True)
         source_path = Path("/Users/gsikora/Downloads") / filename
         destination_path = destination_folder / filename
