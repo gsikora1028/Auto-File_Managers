@@ -20,7 +20,7 @@ file_extension_library = {
     #Images
     ".gif" : "Images", ".iso" : "Images", ".jpeg" : "Images", ".jpg" : "Images", ".psd" : "Images", ".png" : "Images", ".tiff" : "Images", ".tif" : "Images",
     #MISC
-    ".vsd" : "MISC", ".vsdm" : "MISC", ".vsdx" : "MISC", ".vss" : "MISC", ".vssm" : "MISC", ".vst" : "MISC", ".vstm" : "MISC", ".vstx" : "MISC", ".zip" : "MISC", ".step" : "MISC", ".bin" : "MISC", ".bmp" : "MISC", ".exe" : "MISC", 
+    ".vsd" : "MISC", ".vsdm" : "MISC", ".vsdx" : "MISC", ".vss" : "MISC", ".vssm" : "MISC", ".vst" : "MISC", ".vstm" : "MISC", ".vstx" : "MISC", ".zip" : "MISC", ".step" : "MISC", ".bin" : "MISC", ".bmp" : "MISC", ".exe" : "MISC", ".dmg": "MISC",
     #Videos
     ".flv" : "Videos", ".mov" : "Videos", ".mp3" : "Videos", ".mp4" : "Videos", ".mpg" : "Videos", ".vob" : "Video",
     #Webpages
@@ -28,6 +28,7 @@ file_extension_library = {
 }
 
 # Loop through the files in the downloads folder
+print("Looping through Downloads Folder...")
 for filename in os.listdir("/Users/gsikora/Downloads"):
     ext = os.path.splitext(filename)[1].lower()
     folder = file_extension_library.get(ext)
@@ -40,6 +41,12 @@ for filename in os.listdir("/Users/gsikora/Downloads"):
         destination_path = destination_folder / filename
         shutil.move(str(source_path), str(destination_path))
 
+    # Check if "_TRF_" is present in the filename and move it to the TRF_Files folder
+    if "_TRF_" in filename:
+        trf_folder = "/Users/gsikora/Desktop/GH/1-DV/TRF_Files"
+        trf_destination = Path(trf_folder) / filename
+        shutil.move(os.path.join("/Users/gsikora/Downloads/Documents", filename), str(trf_destination))
+
 # define the list of directories where you want to search for files with .xls extension
 directories = ['/Users/gsikora/Downloads/Documents', '/Users/gsikora/Desktop']
 
@@ -49,6 +56,7 @@ extension = '.xls'
 # define the destination folder where you want to move the files
 dest_folder = '/Users/gsikora/Desktop/GH/XLS_delete'
 
+print("Moving .xls folders to deletion folder")
 # define a function to find files with the specified extension and move them to the destination folder
 def find_files(directories, extension, dest_folder):
     for directory in directories:
