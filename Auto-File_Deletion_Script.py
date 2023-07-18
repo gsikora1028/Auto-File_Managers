@@ -1,7 +1,10 @@
-#Program: Auto File Deleter
-#Author: Gabriel Sikora
-#Creation Date: 5/2/2023
-#---------------------------------------------------
+# ********************************************************************************************
+# Program: Auto File Deleter
+# Author: Gabe Sikora
+# Date: 5/2/2023
+# Function: Automatically delete files listed in specific directories
+# ********************************************************************************************
+
 import os
 import time
 import glob

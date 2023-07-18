@@ -1,12 +1,15 @@
-#Program: Download File Sorter
-#Author: Gabriel Sikora
-#Creation Date: 5/2/2023
-#---------------------------------------------------
+# ********************************************************************************************
+# Program: Download File Sorter
+# Author: Gabe Sikora
+# Date: 5/2/2023
+# Function: Automatically sort downloaded files into specific folders based on file extension
+# ********************************************************************************************
+
 import os
 import shutil
 from pathlib import Path
 
-# Define the folders for different file types
+# Define the folders for different file types with the file extensions
 file_extension_library = {
     #Audio
     ".adt" : "Audio", ".adts" : "Audio", ".aac" : "Audio", ".m4a" : "Audio", ".aifc" : "Audio", ".aiff" : "Audio", ".aif" : "Audio", ".avi" : "Audio", ".cda" : "Audio", ".m4a" : "Audio", ".wav" : "Audio",
@@ -28,7 +31,7 @@ file_extension_library = {
 }
 
 # Loop through the files in the downloads folder
-print("Looping through Downloads Folder...")
+print("\nLooping through Downloads Folder...")
 for filename in os.listdir("/Users/gsikora/Downloads"):
     ext = os.path.splitext(filename)[1].lower()
     folder = file_extension_library.get(ext)
@@ -47,17 +50,17 @@ for filename in os.listdir("/Users/gsikora/Downloads"):
         trf_destination = Path(trf_folder) / filename
         shutil.move(os.path.join("/Users/gsikora/Downloads/Documents", filename), str(trf_destination))
 
-# define the list of directories where you want to search for files with .xls extension
+# Define the list of directories where you want to search for files with .xls extension
 directories = ['/Users/gsikora/Downloads/Documents', '/Users/gsikora/Desktop']
 
-# define the file extension you want to search for
+# Define the file extension you want to search for
 extension = '.xls'
 
-# define the destination folder where you want to move the files
+# Define the destination folder where you want to move the files
 dest_folder = '/Users/gsikora/Desktop/GH/XLS_delete'
 
-print("Moving .xls folders to deletion folder")
-# define a function to find files with the specified extension and move them to the destination folder
+print("Moving .xls files to deletion folder")
+# Define a function to find files with the specified extension and move them to the destination folder
 def find_files(directories, extension, dest_folder):
     for directory in directories:
         for subdir, dirs, files in os.walk(directory):
