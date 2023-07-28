@@ -36,8 +36,9 @@ def main():
         else:
             print(f'"{file_directory}" is not found')
 
-    print(f"Total files deleted: {deleted_files_count}")
+    print(f"\nTotal files deleted: {deleted_files_count}")
 
+print("\nDeleting Files from TRF_FILES, DRFs, UPLOADED Docs, and XLS_delete directories")
 def remove_file(path):
     try:
         os.remove(path)
