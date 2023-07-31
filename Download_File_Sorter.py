@@ -21,7 +21,7 @@ file_extension_library = {
     #Email
     ".eml" : "Email", ".pst" : "Email",
     #Images
-    ".gif" : "Images", ".iso" : "Images", ".jpeg" : "Images", ".jpg" : "Images", ".psd" : "Images", ".png" : "Images", ".tiff" : "Images", ".tif" : "Images",
+    ".gif" : "Images", ".iso" : "Images", ".jpeg" : "Images", ".jpg" : "Images", ".psd" : "Images", ".png" : "Images", ".tiff" : "Images", ".tif" : "Images", ".heic" : "Images",
     #MISC
     ".vsd" : "MISC", ".vsdm" : "MISC", ".vsdx" : "MISC", ".vss" : "MISC", ".vssm" : "MISC", ".vst" : "MISC", ".vstm" : "MISC", ".vstx" : "MISC", ".zip" : "MISC", ".step" : "MISC", ".bin" : "MISC", ".bmp" : "MISC", ".exe" : "MISC", ".dmg": "MISC",
     #Videos
