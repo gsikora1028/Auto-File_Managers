@@ -1,12 +1,15 @@
-#Program: Download File Sorter
-#Author: Gabriel Sikora
-#Creation Date: 5/2/2023
-#---------------------------------------------------
+# ********************************************************************************************
+# Program: Download File Sorter
+# Author: Gabe Sikora
+# Date: 5/2/2023
+# Function: Automatically sort downloaded files into specific folders based on file extension
+# ********************************************************************************************
+
 import os
 import shutil
 from pathlib import Path
 
-# Define the folders for different file types
+# Define the folders for different file types with the file extensions
 file_extension_library = {
     #Audio
     ".adt" : "Audio", ".adts" : "Audio", ".aac" : "Audio", ".m4a" : "Audio", ".aifc" : "Audio", ".aiff" : "Audio", ".aif" : "Audio", ".avi" : "Audio", ".cda" : "Audio", ".m4a" : "Audio", ".wav" : "Audio",
@@ -18,9 +21,9 @@ file_extension_library = {
     #Email
     ".eml" : "Email", ".pst" : "Email",
     #Images
-    ".gif" : "Images", ".iso" : "Images", ".jpeg" : "Images", ".jpg" : "Images", ".psd" : "Images", ".png" : "Images", ".tiff" : "Images", ".tif" : "Images",
+    ".gif" : "Images", ".iso" : "Images", ".jpeg" : "Images", ".jpg" : "Images", ".psd" : "Images", ".png" : "Images", ".tiff" : "Images", ".tif" : "Images", ".heic" : "Images",
     #MISC
-    ".vsd" : "MISC", ".vsdm" : "MISC", ".vsdx" : "MISC", ".vss" : "MISC", ".vssm" : "MISC", ".vst" : "MISC", ".vstm" : "MISC", ".vstx" : "MISC", ".zip" : "MISC", ".step" : "MISC", ".bin" : "MISC", ".bmp" : "MISC", ".exe" : "MISC", 
+    ".vsd" : "MISC", ".vsdm" : "MISC", ".vsdx" : "MISC", ".vss" : "MISC", ".vssm" : "MISC", ".vst" : "MISC", ".vstm" : "MISC", ".vstx" : "MISC", ".zip" : "MISC", ".step" : "MISC", ".bin" : "MISC", ".bmp" : "MISC", ".exe" : "MISC", ".dmg": "MISC",
     #Videos
     ".flv" : "Videos", ".mov" : "Videos", ".mp3" : "Videos", ".mp4" : "Videos", ".mpg" : "Videos", ".vob" : "Video",
     #Webpages
@@ -28,33 +31,36 @@ file_extension_library = {
 }
 
 # Loop through the files in the downloads folder
+print("\nLooping through Downloads Folder...")
 for filename in os.listdir("/Users/gsikora/Downloads"):
-    # Check if "_TRF_" is present in the filename
-    if "_TRF_" in filename:
-        folder = "TRF_Files"  # Specify the folder for TRF files
-    else:
-        # Get the file extension and corresponding folder
-        ext = os.path.splitext(filename)[1].lower()
-        folder = file_extension_library.get(ext)
+    ext = os.path.splitext(filename)[1].lower()
+    folder = file_extension_library.get(ext)
 
     # If the file extension is in the dictionary, move the file to the corresponding folder
     if folder is not None:
-        destination_folder = Path("/Users/gsikora/Desktop/GH/1-DV") / folder
+        destination_folder = Path("/Users/gsikora/Downloads") / folder
         destination_folder.mkdir(parents=True, exist_ok=True)
         source_path = Path("/Users/gsikora/Downloads") / filename
         destination_path = destination_folder / filename
         shutil.move(str(source_path), str(destination_path))
 
-# define the list of directories where you want to search for files with .xls extension
+    # Check if "_TRF_" is present in the filename and move it to the TRF_Files folder
+    if "_TRF_" in filename:
+        trf_folder = "/Users/gsikora/Desktop/GH/1-DV/TRF_Files"
+        trf_destination = Path(trf_folder) / filename
+        shutil.move(os.path.join("/Users/gsikora/Downloads/Documents", filename), str(trf_destination))
+
+# Define the list of directories where you want to search for files with .xls extension
 directories = ['/Users/gsikora/Downloads/Documents', '/Users/gsikora/Desktop']
 
-# define the file extension you want to search for
+# Define the file extension you want to search for
 extension = '.xls'
 
-# define the destination folder where you want to move the files
+# Define the destination folder where you want to move the files
 dest_folder = '/Users/gsikora/Desktop/GH/XLS_delete'
 
-# define a function to find files with the specified extension and move them to the destination folder
+print("Moving .xls files to deletion folder")
+# Define a function to find files with the specified extension and move them to the destination folder
 def find_files(directories, extension, dest_folder):
     for directory in directories:
         for subdir, dirs, files in os.walk(directory):
