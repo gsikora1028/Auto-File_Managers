@@ -1,8 +1,8 @@
 # ********************************************************************************************
-# Program: Download File Sorter
+# Program: File Sorter
 # Author: Gabe Sikora
 # Date: 5/2/2023
-# Function: Automatically sort downloaded files into specific folders based on file extension
+# Function: Automatically sort files into specific folders based on file extension/file names
 # ********************************************************************************************
 
 import os
@@ -61,7 +61,7 @@ dest_folder = '/Users/gsikora/Desktop/GH/XLS_delete'
 
 print("Moving .xls files to deletion folder")
 # Define a function to find files with the specified extension and move them to the destination folder
-def find_files(directories, extension, dest_folder):
+def find_xls_files(directories, extension, dest_folder):
     for directory in directories:
         for subdir, dirs, files in os.walk(directory):
             for file in files:
@@ -70,5 +70,22 @@ def find_files(directories, extension, dest_folder):
                     shutil.move(file_path, os.path.join(dest_folder, file))
                     print(f"{file} was moved to {dest_folder}.")
 
-# call the find_files function
-find_files(directories, extension, dest_folder)
+# call the find_xls_files function
+find_xls_files(directories, extension, dest_folder)
+
+screenshot_folder = "/Users/gsikora/Desktop/Screenshots"
+screen_recording_folder = "/Users/gsikora/Desktop/Screen Recordings"
+
+# Function to add screenshots/screen recordings to different screenshots folder
+def move_screen_recordings_and_screenshots_to_new_folders(screenshot_folder, screen_recording_folder):
+    for filename in os.listdir("/Users/gsikora/Desktop"):
+        if "Screenshot" in filename:
+            shutil.move(os.path.join("/Users/gsikora/Desktop", filename), str(screenshot_folder))
+            print(f"Moved {filename} to {screenshot_folder}")
+
+        if "Screen Recording" in filename:
+            shutil.move(os.path.join("/Users/gsikora/Desktop", filename), str(screen_recording_folder))
+            print(f"Moved {filename} to {screen_recording_folder}")
+
+# call the screenshot sorting function
+move_screen_recordings_and_screenshots_to_new_folders(screenshot_folder, screen_recording_folder)
